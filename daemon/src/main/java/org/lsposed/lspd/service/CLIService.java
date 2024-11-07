@@ -183,13 +183,16 @@ public class CLIService extends ICLIService.Stub {
     }
 
     public static boolean basicCheck(int uid) {
-        if (!ConfigManager.getInstance().isEnableCli()) {
-            return false;
-        }
         if (uid != 0) {
             return false;
         }
+        /* root can always access the CLI */
         return true;
+
+//        if (!ConfigManager.getInstance().isEnableCli()) {
+//            return false;
+//        }
+//        return true;
     }
 
     public static boolean applicationStageNameValid(int pid, String processName) {

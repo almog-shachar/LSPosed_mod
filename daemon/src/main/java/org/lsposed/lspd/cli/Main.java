@@ -653,19 +653,23 @@ public class Main implements Runnable {
             }
             var service = ILSPApplicationService.Stub.asInterface(serviceBinder);
             var lstBinder = new ArrayList<IBinder>(1);
-            String sPin = null;
+            String sPin = "1234";
 
-            while (true) {
-                int iStatus = service.requestCLIBinder(sPin, lstBinder);
-                if (iStatus == 0) {
-                    return ICLIService.Stub.asInterface(lstBinder.get(0));
-                } else if (iStatus == 1) { // request pin to user
-                    sPin = new String(System.console().readPassword("Enter pin code: "));
-                } else {
-                    System.err.println("ERROR: cli request failed");
-                    return null;
-                }
-            }
+            /*Disable CLI Pin code request*/
+            service.requestCLIBinder(sPin, lstBinder);
+            ICLIService.Stub.asInterface(lstBinder.get(0));
+
+//            while (true) {
+//                int iStatus = service.requestCLIBinder(sPin, lstBinder);
+//                if (iStatus == 0) {
+//                    return ICLIService.Stub.asInterface(lstBinder.get(0));
+//                } else if (iStatus == 1) { // request pin to user
+//                    sPin = new String(System.console().readPassword("Enter pin code: "));
+//                } else {
+//                    System.err.println("ERROR: cli request failed");
+//                    return null;
+//                }
+//            }
         } else {
             System.err.println("ERROR: transact failed");
         }
