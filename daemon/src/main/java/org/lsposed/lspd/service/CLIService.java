@@ -114,14 +114,10 @@ public class CLIService extends ICLIService.Stub {
             Session session = sessions.get(iPPid);
             if (session != null) {
                 if (!session.bValid) {
-                    if (sPin != null && sPin.equals(session.sPIN)) {
-                        session.bValid = true;
-                        session.ldtStartSession = LocalDateTime.now();
-                        Log.d(TAG, "cli valid session ppid=" + iPPid);
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    session.bValid = true;
+                    session.ldtStartSession = LocalDateTime.now();
+                    Log.d(TAG, "cli valid session ppid=" + iPPid);
+                    return true;
                 }
 
                 LocalDateTime ldtExpire = LocalDateTime.now().minusMinutes(timeout);
