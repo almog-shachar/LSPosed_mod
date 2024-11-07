@@ -331,7 +331,7 @@ public class ConfigManager {
         }
     }
 
-    static ConfigManager getInstance() {
+    public static ConfigManager getInstance() {
         if (instance == null)
             instance = new ConfigManager();
         boolean needCached;
