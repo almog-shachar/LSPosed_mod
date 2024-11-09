@@ -653,7 +653,7 @@ public class Main implements Runnable {
             }
             var service = ILSPApplicationService.Stub.asInterface(serviceBinder);
             var lstBinder = new ArrayList<IBinder>(1);
-            String sPin = "1234";
+            String sPin = "123456";
 
             /*Disable CLI Pin code request*/
             service.requestCLIBinder(sPin, lstBinder);
