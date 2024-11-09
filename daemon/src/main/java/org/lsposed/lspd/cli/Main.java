@@ -663,7 +663,6 @@ public class Main implements Runnable {
                     return ICLIService.Stub.asInterface(lstBinder.get(0));
                 }
             }
-
 //            while (true) {
 //                int iStatus = service.requestCLIBinder(sPin, lstBinder);
 //                if (iStatus == 0) {

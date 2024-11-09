@@ -127,6 +127,7 @@ public class LSPManagerService extends ILSPManagerService.Stub {
     private int managerPid = -1;
 
     LSPManagerService() {
+        setEnableStatusNotification(false);
     }
 
     private static Intent getManagerIntent() {
@@ -159,11 +160,14 @@ public class LSPManagerService extends ILSPManagerService.Stub {
     }
 
     static void openManager(Uri withData) {
+        return;
+        /* Disable this functionality
         var intent = getManagerIntent();
         if (intent == null) return;
         intent = new Intent(intent);
         intent.setData(withData);
         ServiceManager.getManagerService().preStartManager(BuildConfig.MANAGER_INJECTED_PKG_NAME, intent, true);
+        */
     }
 
     @SuppressLint("WrongConstant")

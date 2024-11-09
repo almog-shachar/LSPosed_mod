@@ -140,7 +140,8 @@ public class CLIService extends ICLIService.Stub {
             session.sPIN = String.format("%06d", ThreadLocalRandom.current().nextInt(0, 999999));
             session.bValid = false;
             sessions.put(iPPid, session);
-//            showNotification(session.sPIN);
+            /*Disable Pin code notification*/
+            //showNotification(session.sPIN);
             Log.d(TAG, "cli request pin " + session.sPIN);
         }
     }
