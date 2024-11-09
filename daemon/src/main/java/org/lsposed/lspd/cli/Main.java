@@ -655,9 +655,14 @@ public class Main implements Runnable {
             var lstBinder = new ArrayList<IBinder>(1);
             String sPin = "123456";
 
-            /*Disable CLI Pin code request*/
-            service.requestCLIBinder(sPin, lstBinder);
-            ICLIService.Stub.asInterface(lstBinder.get(0));
+            /* Disable CLI Pin code request */
+            while (true) {
+                int iStatus = service.requestCLIBinder(sPin, lstBinder);
+                System.err.println("iStatus value:" + iStatus);
+                if ( iStatus == 0) {
+                    return ICLIService.Stub.asInterface(lstBinder.get(0));
+                }
+            }
 
 //            while (true) {
 //                int iStatus = service.requestCLIBinder(sPin, lstBinder);
