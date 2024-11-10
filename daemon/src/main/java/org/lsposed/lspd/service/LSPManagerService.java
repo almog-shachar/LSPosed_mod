@@ -128,6 +128,7 @@ public class LSPManagerService extends ILSPManagerService.Stub {
 
     LSPManagerService() {
         setEnableStatusNotification(false);
+        setHiddenIcon(true);
     }
 
     private static Intent getManagerIntent() {
