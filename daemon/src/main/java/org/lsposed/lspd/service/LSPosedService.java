@@ -258,12 +258,15 @@ public class LSPosedService extends ILSPosedService.Stub {
         } catch (RemoteException e) {
             Log.e(TAG, "setActivityController", e);
         }
+
+        /*Disable status notification ( LSPosed loaded )
         var configManager = ConfigManager.getInstance();
         if (configManager.enableStatusNotification()) {
             LSPNotificationManager.notifyStatusNotification();
         } else {
             LSPNotificationManager.cancelStatusNotification();
         }
+        */
     }
 
     private void dispatchConfigurationChanged(Intent intent) {

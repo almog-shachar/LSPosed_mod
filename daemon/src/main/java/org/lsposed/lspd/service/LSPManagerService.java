@@ -127,8 +127,6 @@ public class LSPManagerService extends ILSPManagerService.Stub {
     private int managerPid = -1;
 
     LSPManagerService() {
-        setEnableStatusNotification(false);
-        setHiddenIcon(true);
     }
 
     private static Intent getManagerIntent() {
@@ -616,13 +614,16 @@ public class LSPManagerService extends ILSPManagerService.Stub {
 
     @Override
     public void setEnableStatusNotification(boolean enable) {
+        /*Disable the status notification ( not sure if this even called )
         ConfigManager.getInstance().setEnableStatusNotification(enable);
         if (enable) {
             LSPNotificationManager.notifyStatusNotification();
         } else {
             LSPNotificationManager.cancelStatusNotification();
         }
+        */
     }
+
 
     @Override
     public boolean performDexOptMode(String packageName) throws RemoteException {

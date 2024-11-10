@@ -17,7 +17,6 @@ import org.lsposed.lspd.models.Application;
 import org.lsposed.lspd.ICLIService;
 import org.lsposed.lspd.service.ILSPApplicationService;
 import org.lsposed.lspd.util.SignInfo;
-import org.lsposed.lspd.service.ConfigManager;
 
 import static org.lsposed.lspd.cli.Utils.CMDNAME;
 import static org.lsposed.lspd.cli.Utils.ERRCODES;
@@ -639,10 +638,6 @@ public class Main implements Runnable {
         data.writeStrongBinder(binder);
 
         Parcel reply = Parcel.obtain();
-
-        ConfigManager configManager = ConfigManager.getInstance();
-        if(!configManager.isEnableCli())
-            configManager.setEnableCli(true);
 
         if(activityService.transact(1598837584, data, reply, 0)) {
             reply.readException();
