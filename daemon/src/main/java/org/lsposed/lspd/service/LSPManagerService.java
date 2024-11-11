@@ -614,7 +614,7 @@ public class LSPManagerService extends ILSPManagerService.Stub {
 
     @Override
     public void setEnableStatusNotification(boolean enable) {
-        /*Disable the status notification ( not sure if this even called )
+        /*Disable the status notification ( not sure if this even called  )
         ConfigManager.getInstance().setEnableStatusNotification(enable);
         if (enable) {
             LSPNotificationManager.notifyStatusNotification();
