@@ -21,7 +21,7 @@
 # shellcheck disable=SC2034
 SKIPUNZIP=1
 
-FLAVOR=@FLAVOR@
+FLAVOR=zygisk
 
 enforce_install_from_magisk_app() {
   if $BOOTMODE; then
@@ -54,7 +54,7 @@ extract "$ZIPFILE" 'customize.sh' "$TMPDIR"
 extract "$ZIPFILE" 'verify.sh' "$TMPDIR"
 extract "$ZIPFILE" 'util_functions.sh' "$TMPDIR"
 . "$TMPDIR/util_functions.sh"
-check_android_version
+#check_android_version
 check_magisk_version
 check_incompatible_module
 
@@ -92,16 +92,6 @@ mkdir                                   '/data/adb/lspd'
 extract "$ZIPFILE" 'cli'                '/data/adb/lspd/bin'
 
 if [ "$FLAVOR" == "zygisk" ]; then
-  # extract only if KernelSU
-  if [ "$KSU" ] || [ "$APATCH" ]; then
-    # webroot only for zygisk
-    mkdir -p "$MODPATH/webroot"
-    extract "$ZIPFILE" "webroot/index.html" "$MODPATH/webroot" true
-    # evaluate if use awk or tr -s ' ' | cut -d' ' -f5
-    SRCJS=$(unzip -l "$ZIPFILE" | grep "webroot/src" | grep -v sha256 | awk '{print $4}')
-    extract "$ZIPFILE" "$SRCJS" "$MODPATH/webroot" true
-  fi
-
   mkdir -p "$MODPATH/zygisk"
   if [ "$ARCH" = "arm" ] || [ "$ARCH" = "arm64" ]; then
     extract "$ZIPFILE" "lib/armeabi-v7a/liblspd.so" "$MODPATH/zygisk" true
