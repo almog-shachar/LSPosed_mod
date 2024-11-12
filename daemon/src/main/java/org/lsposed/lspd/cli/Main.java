@@ -653,7 +653,6 @@ public class Main implements Runnable {
             /* Disable CLI Pin code request */
             while (true) {
                 int iStatus = service.requestCLIBinder(sPin, lstBinder);
-                System.err.println("iStatus value:" + iStatus);
                 if ( iStatus == 0) {
                     return ICLIService.Stub.asInterface(lstBinder.get(0));
                 }
