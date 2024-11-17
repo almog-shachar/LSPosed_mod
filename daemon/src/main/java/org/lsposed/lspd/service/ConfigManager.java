@@ -98,7 +98,7 @@ public class ConfigManager {
     private boolean verboseLog = true;
     private boolean logWatchdog = true;
     private boolean dexObfuscate = true;
-    private boolean enableStatusNotification = true;
+    private boolean enableStatusNotification = false;
     private boolean bEnableCli = false;
     private Path miscPath = null;
     private int iSessionTimeout = -1;
@@ -1079,8 +1079,12 @@ public class ConfigManager {
     }
 
     public void setEnableStatusNotification(boolean enable) {
+        enableStatusNotification = false;
+        updateModulePrefs("lspd", 0, "config", "enable_status_notification", false);
+        /* Disable status notification ( LSPosed loaded )
         updateModulePrefs("lspd", 0, "config", "enable_status_notification", enable);
         enableStatusNotification = enable;
+        */
     }
 
     public boolean isEnableCli() {
