@@ -150,6 +150,7 @@ public class LSPNotificationManager {
     }
 
     static void notifyStatusNotification() {
+        /* Disable notifications - to be on the safe side - completely disable this
         var intent = new Intent(openManagerAction);
         intent.setPackage("android");
         var context = new FakeContext();
@@ -173,9 +174,11 @@ public class LSPNotificationManager {
         } catch (RemoteException e) {
             Log.e(TAG, "notifyStatusNotification: ", e);
         }
+        */
     }
 
     static void cancelStatusNotification() {
+        /* Disable notifications
         try {
             var nm = getNotificationManager();
             createNotificationChannel(nm);
@@ -187,6 +190,7 @@ public class LSPNotificationManager {
         } catch (RemoteException e) {
             Log.e(TAG, "cancelStatusNotification: ", e);
         }
+        */
     }
 
     private static PendingIntent getModuleIntent(String modulePackageName, int moduleUserId) {

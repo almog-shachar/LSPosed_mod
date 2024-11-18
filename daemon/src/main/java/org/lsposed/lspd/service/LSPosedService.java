@@ -152,12 +152,16 @@ public class LSPosedService extends ILSPosedService.Stub {
                         isXposedModule = true;
                         broadcastAndShowNotification(moduleName, userId, intent, true);
                     }
+                    /* Disable notifications
                     LSPNotificationManager.cancelNotification(UPDATED_CHANNEL_ID, moduleName, userId);
+                     */
                 }
             }
             case Intent.ACTION_PACKAGE_REMOVED -> {
                 if (moduleName != null) {
+                    /* Disable notifications
                     LSPNotificationManager.cancelNotification(UPDATED_CHANNEL_ID, moduleName, userId);
+                    */
                 }
                 break;
             }
@@ -238,8 +242,10 @@ public class LSPosedService extends ILSPosedService.Stub {
             var scope = ConfigManager.getInstance().getModuleScope(packageName);
             boolean systemModule = scope != null && scope.parallelStream().anyMatch(app -> app.packageName.equals("system"));
             boolean enabled = Arrays.asList(enabledModules).contains(packageName);
+            /* Disable notifications
             if (!(Intent.ACTION_UID_REMOVED.equals(action) || Intent.ACTION_PACKAGE_FULLY_REMOVED.equals(action) || allUsers))
                 LSPNotificationManager.notifyModuleUpdated(packageName, userId, enabled, systemModule);
+            */
         }
     }
 
@@ -272,12 +278,14 @@ public class LSPosedService extends ILSPosedService.Stub {
     private void dispatchConfigurationChanged(Intent intent) {
         if (!bootCompleted) return;
         ConfigFileManager.reloadConfiguration();
+        /*Disable status notification ( LSPosed loaded )
         var configManager = ConfigManager.getInstance();
         if (configManager.enableStatusNotification()) {
             LSPNotificationManager.notifyStatusNotification();
         } else {
             LSPNotificationManager.cancelStatusNotification();
         }
+        */
     }
 
     private void dispatchSecretCodeReceive(Intent i) {
@@ -340,7 +348,9 @@ public class LSPosedService extends ILSPosedService.Stub {
                 // callback died
             }
         }
+        /* Disable notifications
         LSPNotificationManager.cancelNotification(SCOPE_CHANNEL_ID, packageName, userId);
+        */
     }
 
     private void registerReceiver(List<IntentFilter> filters, String requiredPermission, int userId, Consumer<Intent> task, int flag) {
